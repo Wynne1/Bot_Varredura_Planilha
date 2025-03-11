@@ -11,12 +11,23 @@
     O código presente aqui dentro faz a navegação até o site e extrai as informações da tabela:
     Proxy name; 
     domain; 
-    country; 
+    country;  
     speed; 
     popularity
-###  Criar uma pipeline para os dados serem retornados e processados:
+###  Criar uma pipeline para os dados serem retornados e processados(pipelines.py):
     Definindo como a planilha será aberta:
-
+    - Abre a planilha na página atual
+    - Adiciona os CAMPOS que são exatamente os que estão no arquivo proxyspider.py
+    
     Definindo como a planilha será processada:
+    - Processa os "item" na classe ItemAdapter
+    - Obtem o item de acordo com o nome da coluna -> self.sheet.append([adapter.get('Proxy name', adapter.get('domain') e faz para todos os outros...]
 
     Definindo como a planilha vai ser encerrada:
+    - Passa o caminho específico através do arquivo settings.
+    - No settings.py cria-se uma variável XLSX_PATH ='projetoproxies.xlsx"
+    - Ainda dentro do settings.py descomentar "ITEM_PIPELINES" e colocar o nome da classe criada no pipelines.py, no caso do projeto : .XLSXPipeline
+    - Fazer a importação do settings no pipelines.py : projetobotproxies.settings
+    - Passa o valor do settings na variável save
+### Rodar a aplicação:
+    scrapy crawl nome_do_bot
